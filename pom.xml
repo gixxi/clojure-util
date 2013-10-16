@@ -1,172 +1,150 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.lambdaroyal</groupId>
-	<artifactId>clojure-util</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
-	<description>
-	  Non-functional Aspects (DB, I/O, Tracing) for other projects 
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.lambdaroyal</groupId>
+  <artifactId>clojure-util</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <description>
+      <![CDATA[
+      Non-functional Aspects (DB, I/O, Tracing) for other projects.
+      Documentation and Examples on <a href="https://github.com/gixxi/clojure-util">https://github.com/gixxi/clojure-util</a> 
+      <br/>
+      This Lib is compiled using Clojure <em>1.5</em> on Java <em>1.7</em>]]>
 	</description>
-	<properties>
-		<project.reporting.outputEncoding>
+  <properties>
+    <project.reporting.outputEncoding>
 			UTF-8</project.reporting.outputEncoding>
-		<project.build.sourceEncoding>
+    <project.build.sourceEncoding>
 			UTF-8</project.build.sourceEncoding>
-		<execmavenplugin.version>1.2.1</execmavenplugin.version>
-		<version.maven-assembly-plugin>2.4</version.maven-assembly-plugin>
-		<version.com.theoryinpractise.clojure-maven-plugin>1.3.2</version.com.theoryinpractise.clojure-maven-plugin>
-		<version.org.clojure.clojure>1.5.0</version.org.clojure.clojure>
-		<version.org.clojure.java.jdbc>0.2.3</version.org.clojure.java.jdbc>
-		<version.org.apache.derby.derby>10.8.1.2</version.org.apache.derby.derby>
-		<version.org.apache.tomcat.tomcat-jdbc>7.0.21</version.org.apache.tomcat.tomcat-jdbc>
-		<version.org.apache.tomcat.juli>6.0.29</version.org.apache.tomcat.juli>
-		<version.org.clojure.data.json>0.2.2</version.org.clojure.data.json>
-		<version.org.clojure.data.zip>0.1.1</version.org.clojure.data.zip>
-		<version.org.clojure.tools.cli>0.2.2</version.org.clojure.tools.cli>
-		<version.org.clojure.tools.trace>0.7.5</version.org.clojure.tools.trace>
-		<version.org.apache.ddlutils.ddlutils>1.0</version.org.apache.ddlutils.ddlutils>
-		<version.org.jboss.resteasy.resteasy-jaxrs>2.3.5.Final</version.org.jboss.resteasy.resteasy-jaxrs>
-		<version.junit.junit>4.10</version.junit.junit>	</properties>
-<dependencies>
-        <dependency>
-            <groupId>org.clojure</groupId>
-            <artifactId>clojure</artifactId>
-            <version>${version.org.clojure.clojure}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.clojure</groupId>
-            <artifactId>java.jdbc</artifactId>
-            <version>${version.org.clojure.java.jdbc}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>${version.org.apache.derby.derby}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>${version.org.apache.derby.derby}</version>
-        </dependency>
-        <!-- Nutzung der Apache Tomcat DBCP f�r Connection Pooling -->
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-            <version>${version.org.apache.tomcat.tomcat-jdbc}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>juli</artifactId>
-            <version>${version.org.apache.tomcat.juli}</version>
-        </dependency>
-
-        <!-- JSON Export -->
-        <dependency>
-            <groupId>org.clojure</groupId>
-            <artifactId>data.json</artifactId>
-            <version>${version.org.clojure.data.json}</version>
-        </dependency>
-        <!-- Nutzung von tools.cli f�r parameter parsing -->
-        <dependency>
-            <groupId>org.clojure</groupId>
-            <artifactId>tools.cli</artifactId>
-            <version>${version.org.clojure.tools.cli}</version>
-        </dependency>
-
-        <!-- XML Verarbeitung -->
-        <dependency>
-            <groupId>org.clojure</groupId>
-            <artifactId>data.zip</artifactId>
-            <version>${version.org.clojure.data.zip}</version>
-        </dependency>
-
-        <!-- Debugging Info -->
-        <dependency>
-            <groupId>org.clojure</groupId>
-            <artifactId>tools.trace</artifactId>
-            <version>${version.org.clojure.tools.trace}</version>
-        </dependency>
-        <!-- DDLUtils for schema update -->
-        <dependency>
-            <groupId>org.apache.ddlutils</groupId>
-            <artifactId>ddlutils</artifactId>
-            <version>${version.org.apache.ddlutils.ddlutils}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>${execmavenplugin.version}</version>
-        </dependency>
-        <!-- Testing Dependencies -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${version.junit.junit}</version>
-        </dependency>
-    </dependencies>
-
-	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
-		<testSourceDirectory>src/test/java</testSourceDirectory>
-		<plugins>
-			<plugin>
-				<groupId>com.theoryinpractise</groupId>
-				<artifactId>clojure-maven-plugin</artifactId>
-				<version>${version.com.theoryinpractise.clojure-maven-plugin}</version>
-				<configuration>
-					<sourceDirectories>
-						<sourceDirectory>src/main/clojure</sourceDirectory>
-					</sourceDirectories>
-					<testSourceDirectories>
-						<testSourceDirectory>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>clojure</artifactId>
+      <version>1.5.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>java.jdbc</artifactId>
+      <version>0.2.3</version>
+    </dependency>
+    <!-- Nutzung der Apache Tomcat DBCP fuer Connection Pooling -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jdbc</artifactId>
+      <version>7.0.21</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>juli</artifactId>
+      <version>6.0.29</version>
+    </dependency>
+    <!-- JSON Export -->
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>data.json</artifactId>
+      <version>0.2.2</version>
+    </dependency>
+    <!-- XML Verarbeitung -->
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>data.zip</artifactId>
+      <version>0.1.1</version>
+    </dependency>
+    <!-- Debugging Info -->
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>tools.trace</artifactId>
+      <version>0.7.5</version>
+    </dependency>
+    <!-- DDLUtils for schema update -->
+    <dependency>
+      <groupId>org.apache.ddlutils</groupId>
+      <artifactId>ddlutils</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>exec-maven-plugin</artifactId>
+      <version>1.2.1</version>
+    </dependency>
+    <!-- Testing Dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <distributionManagement>
+    <repository>
+      <id>clojars</id>
+      <name>Clojars repository</name>
+      <url>https://clojars.org/repo</url>
+    </repository>
+  </distributionManagement>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>com.theoryinpractise</groupId>
+        <artifactId>clojure-maven-plugin</artifactId>
+        <version>1.3.2</version>
+        <configuration>
+          <sourceDirectories>
+            <sourceDirectory>src/main/clojure</sourceDirectory>
+          </sourceDirectories>
+          <testSourceDirectories>
+            <testSourceDirectory>
 							src/test/clojure</testSourceDirectory>
-					</testSourceDirectories>
-				</configuration>
-				<executions>
-					<execution>
-						<id>compile-clojure</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- assembly kann gebaut und genutzt werden als REPL Spielwiese für diese bibliothek -->
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>${version.maven-assembly-plugin}</version>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<!-- this is used for inheritance merges -->
-						<phase>package</phase>
-						<!-- bind to the packaging phase -->
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+          </testSourceDirectories>
+        </configuration>
+        <executions>
+          <execution>
+            <id>compile-clojure</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- assembly kann gebaut und genutzt werden als REPL Spielwiese für diese bibliothek -->
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <!-- this is used for inheritance merges -->
+            <phase>package</phase>
+            <!-- bind to the packaging phase -->
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

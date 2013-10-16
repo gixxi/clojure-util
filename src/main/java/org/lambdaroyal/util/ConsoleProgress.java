@@ -32,6 +32,16 @@ public final class ConsoleProgress {
 	
 	private volatile long start;
 	
+        private final char progressIndicator;
+
+        public ConsoleProgress(){
+            progressIndicator = (char) 178;
+        }
+
+        public ConsoleProgress(char progressIndicator) {
+            this.progressIndicator = progressIndicator;
+        }
+
 	/**
 	 * 
 	 * @param task
@@ -69,7 +79,7 @@ public final class ConsoleProgress {
 				b.append(" [");
 				int i = 0;
 				for (; i < Math.floor(progress / 10.0); i++) {
-					b.append((char) 178);
+					b.append(progressIndicator);
 				}
 				for (; i < 10; i++) {
 					b.append(' ');
