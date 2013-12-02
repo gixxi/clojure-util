@@ -37,3 +37,29 @@ progress.showProgress("task12",11);
 progress.showProgress("task12", 100);
 </pre>
 
+##Localcache##
+
+Returns a memoized version of the application of the provided function.
+This version is associated with the provided key. Repeatedly arguments 
+for the same key return the previously computed application or block 
+until the function application returns.
+
+* Clojure example
+
+<pre>
+(require '[org.lambdaroyal.util.localcache :as cache])
+
+(defn long-running-random-generator [x]
+    (do
+        (Thread/sleep 1000)
+        (rand-int x)))
+
+;;this is the first call - nothing is cached so far        
+(cache/cache :foo long-running-random-generator 5)
+
+;;this is the second call with the same signature (parameter) - returns immediately
+(cache/cache :foo long-running-random-generator 5)
+
+;;this is the third call - with another parameter set - so the function is applied and the result provided into the cache
+(cache/cache :foo long-running-random-generator 10)
+
